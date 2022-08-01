@@ -1,5 +1,4 @@
 import numpy as np
-from urllib.request import urlopen
 
 # Array assignment
 
@@ -47,7 +46,7 @@ with_value = np.full((3, 3), 10)
 # print(basic[-1])
 
 
-def ex_1():
+def ex_2():
     # Create and print array:
     # 2 1 0 0
     # 0 2 1 0
@@ -65,7 +64,7 @@ def ex_1():
     print(first_array + second_array)
 
 
-# ex_1()
+# ex_2()
 
 # ---
 # Operations
@@ -124,8 +123,19 @@ inverted_matrix = np.linalg.inv(eye)
 # print(inverted_matrix)
 
 
-def ex_3():
-    # Input shapes and values of matrices and print value of XY^T or print "matrix shapes do not match"
+def ex_4():
+    # Sample data:
+    # 2 3
+    # 8 7 7 14 4 6
+    # 4 3
+    # 5 5 1 5 2 6 3 3 9 1 4 6
+    # ---
+    # 2 3
+    # 5 9 9 10 8 9
+    # 3 4
+    # 6 11 3 5 4 5 3 2 5 8 2 2
+
+    # Read shapes and values of matrices and print value of XY^T or print "matrix shapes do not match"
     x_shape = tuple(map(int, input().split()))
     X = np.fromiter(map(int, input().split()), int).reshape(x_shape)
     y_shape = tuple(map(int, input().split()))
@@ -139,14 +149,15 @@ def ex_3():
         # T is field. Not a method
 
 
-# ex_2()
+# ex_4()
 
 # ---
 # Reading from file with NumPy
 # f = np.loadtxt("filename", usecols=(0, 1, 2), skiprows=1, delimiter=',', dtype={'names': ('date', 'open', 'close'),
-               # 'formats': ('datetime64[D]', 'f4', 'f4')})
+# 'formats': ('datetime64[D]', 'f4', 'f4')})
 
-def ex_4():
+def ex_5():
+    # Sample data: https://stepic.org/media/attachments/lesson/16462/boston_houses.csv
     # You must read from input string with url address of dataset and then find the mean value of every column
     file_url = input()
 
@@ -154,4 +165,4 @@ def ex_4():
     print(data.mean(axis=0))
 
 
-ex_4()
+ex_5()
