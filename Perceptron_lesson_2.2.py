@@ -7,7 +7,7 @@ class Perceptron:
         self.__weights = None
         self.__output = None
 
-    def update_inputs(self, inputs):
+    def __update_inputs(self, inputs):
         # reshaping inputs to add bias (adding a first fictitious value = 1)
         self.__inputs = np.eye(inputs.shape[0] + 1, inputs.shape[0], k=-1) @ inputs
         self.__inputs[0][0] = 1
@@ -17,8 +17,9 @@ class Perceptron:
         self.__weights = np.eye(weights.shape[0] + 1, weights.shape[0], k=-1) @ weights
         self.__weights[0][0] = bias
 
-    def get_result(self):
-        if self.__weights is not None and self.__inputs is not None:
+    def get_result(self, inputs):
+        if self.__weights is not None:
+            self.__update_inputs(inputs)
             self.__output = self.__act_func(self.__weights.T @ self.__inputs)
         else:
             print("Not all required params are set")
@@ -37,9 +38,6 @@ if __name__ == "__main__":
     # representing simple boolean function AND
     my_perceptron.update_weights_and_bias(np.array([[1],
                                                     [1]]), -1.5)
-    my_perceptron.update_inputs(np.array([[1],
-                                          [1]]))
 
-    print(my_perceptron.get_result())
-
-
+    print(my_perceptron.get_result(np.array([[1],
+                                             [1]])))
