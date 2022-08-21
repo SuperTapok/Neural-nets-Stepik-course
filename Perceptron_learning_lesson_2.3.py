@@ -36,13 +36,11 @@ class Perceptron:
                 result = self.get_result(value)
                 if result != train_y[index]:
                     perfect = False
+                    value = self.__expand_array(value)
+                    value[0] = 1
                     if result == 1:
-                        value = self.__expand_array(value)
-                        value[0] = 1
                         self.__weights -= value
                     else:
-                        value = self.__expand_array(value)
-                        value[0] = 1
                         self.__weights += value
 
     @staticmethod
